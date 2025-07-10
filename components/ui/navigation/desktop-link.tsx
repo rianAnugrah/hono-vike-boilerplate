@@ -26,7 +26,7 @@ export default function DesktopLink({
           ${isCompact ? 'flex-col justify-center items-center w-full' : 'flex-row justify-start gap-3'}
           ${
             isActive
-              ? 'text-white backdrop-blur-lg bg-white/10' 
+              ? 'text-white  bg-white/5 shadow-glass' 
               : 'bg-transparent text-gray-300'
           }
           hover:bg-white/10 hover:border-white/5 border border-transparent  hover:text-white  focus:outline-none focus:ring-1 focus:ring-orange-400

@@ -25,6 +25,7 @@ import { useUserStore } from "@/stores/store-user-login";
 // import Logo from "@/components/svg/logo";
 import UserDropDown from "../user-dropdown";
 import GlassButton from "../glass-button/glass-button";
+import Tooltip from "../tooltip/tooltip";
 
 export default function Navbar() {
   return (
@@ -250,11 +251,19 @@ function DesktopNav() {
       >
         {dateTime}
       </p> */}
-      <div className="flex flex-col h-full gap-1 bg-black/10 border border-white/20 shadow-2xl p-2 w-[13rem]  backdrop-blur-xl rounded-2xl">
+      <div className="flex flex-col h-full gap-1 bg-black/10   border border-black/5 shadow-inner  p-2 w-[13rem]  backdrop-blur-xl rounded-2xl">
         <div className="flex gap-2">
+          <Tooltip
+          placement="left"
+          content={`Back to HCML Portal`
+
+          }
+          >
+
         <GlassButton fluid={false} size="sm" >
           <LayoutDashboardIcon size={14} />
         </GlassButton>
+          </Tooltip>
 
         <div className="block flex-grow"> 
 
