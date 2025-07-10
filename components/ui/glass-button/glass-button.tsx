@@ -17,7 +17,7 @@ const sizeClasses: Record<string, string> = {
 };
 
 const squareSizeClasses: Record<string, string> = {
-  sm: 'w-9 h-9', // 36px
+  sm: 'w-7 h-7', // 36px
   md: 'w-12 h-12', // 48px
   lg: 'w-16 h-16', // 64px
 };
@@ -63,7 +63,7 @@ const GlassButton: FC<GlassButtonProps> = ({
   // Variant classes
   let variantClasses = '';
   if (variant === 'solid') {
-    variantClasses = `bg-white/10 ${borderColors[color]} backdrop-blur-md`;
+    variantClasses = `bg-white/5`;
   } else if (variant === 'outline') {
     variantClasses = `bg-transparent border-2 ${borderColors[color]} backdrop-blur-md`;
   } else if (variant === 'ghost') {
@@ -97,8 +97,8 @@ const GlassButton: FC<GlassButtonProps> = ({
 
   return (
     <button
-      className={`relative overflow-hidden ${shapeClass}  transition-transform duration-200 shadow-glass active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-400 group ${normalSizeClass} ${variantClasses} ${fluidClass} ${textClass} ${squareClass}`}
-      style={{ WebkitBackdropFilter: 'blur(8px)', backdropFilter: 'blur(8px)'  }}
+      className={`relative overflow-hidden ${shapeClass} cursor-pointer border border-white/10 transition-transform duration-200 shadow-glass active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-400 group ${normalSizeClass} ${variantClasses} ${fluidClass} ${textClass} ${squareClass}`}
+      
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}

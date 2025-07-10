@@ -4,7 +4,7 @@
 }
 
 @theme {
-  --shadow-glass : 0 0 10px rgba(0, 0, 0, 0.3); 
+  --shadow-glass : 0 0 25px rgba(0, 0, 0, 0.15); 
 }
 
 /* App styles go here */

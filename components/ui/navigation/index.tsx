@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import {
   Archive,
   BookCopy,
+  ChevronLeftIcon,
   HomeIcon,
   LayoutDashboard,
   LayoutDashboardIcon,
@@ -13,6 +14,7 @@ import {
   MenuIcon,
   ScanQrCode,
   SearchCheck,
+  SidebarCloseIcon,
   User2,
 } from "lucide-react";
 import { Link } from "@/renderer/Link";
@@ -248,13 +250,19 @@ function DesktopNav() {
       >
         {dateTime}
       </p> */}
-      <div className="flex flex-col h-full gap-1 bg-white/10 border border-white/20 shadow-2xl py-4 px-2 w-[13rem]  backdrop-blur-xl rounded-2xl">
+      <div className="flex flex-col h-full gap-1 bg-black/10 border border-white/20 shadow-2xl p-2 w-[13rem]  backdrop-blur-xl rounded-2xl">
         <div className="flex gap-2">
-
-
-        <GlassButton fluid={false} size="sm">
-          <LayoutDashboardIcon size={12}/>
+        <GlassButton fluid={false} size="sm" >
+          <LayoutDashboardIcon size={14} />
         </GlassButton>
+
+        <div className="block flex-grow"> 
+
+        </div>
+        <GlassButton fluid={false} variant="ghost" size="sm">
+          <SidebarCloseIcon size={14}/>
+        </GlassButton>
+       
         </div>
         
         {/* <div className="h-[12.75rem] flex items-center justify-center">
