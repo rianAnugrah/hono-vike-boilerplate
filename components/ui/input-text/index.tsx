@@ -51,14 +51,15 @@ export default function InputText({
           name={name}
           placeholder={placeholder}
           className={`
-            w-full px-4 py-2.5 
-            bg-gray-50 
+            w-full px-2 py-2 
+            bg-white/10 
+            text-xs
             border ${
               error
                 ? "border-red-500"
                 : isFocused
                 ? "border-blue-500"
-                : "border-gray-200"
+                : "border-white/10"
             } 
             rounded-lg
             transition-colors duration-200

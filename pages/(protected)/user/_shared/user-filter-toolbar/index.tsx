@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import { ReactNode } from "react";
 import InputSelect from "@/components/ui/input-select";
 import InputText from "@/components/ui/input-text";
-import { Search } from "lucide-react";
+import {
+  ArrowUpDown,
+  Dot,
+  FilterIcon,
+  RefreshCcwDotIcon,
+  RefreshCwIcon,
+  Search,
+} from "lucide-react";
+import GlassButton from "@/components/ui/glass-button/glass-button";
 
 type Props = {
   defaultValues?: {
@@ -17,10 +25,7 @@ type Props = {
   children?: ReactNode;
 };
 
-export function UserFilterToolbar({
-  defaultValues = {},
-  onChange,
-}: Props) {
+export function UserFilterToolbar({ defaultValues = {}, onChange }: Props) {
   const [q, setQ] = useState(defaultValues.q || "");
   const [role, setRole] = useState(defaultValues.role || "");
   // const [locationId, setLocationId] = useState<string | number>(defaultValues.locationId || 1);
@@ -29,14 +34,14 @@ export function UserFilterToolbar({
 
   // Trigger onChange whenever any filter state changes
   useEffect(() => {
-    onChange({ 
-      q, 
-      role, 
+    onChange({
+      q,
+      role,
       // locationId: String(locationId), // Convert to string
-      sort, 
-      order 
+      sort,
+      order,
     });
-  }, [q, role,  sort, order, onChange]);
+  }, [q, role, sort, order, onChange]);
 
   const handleReset = () => {
     setQ("");
@@ -48,69 +53,67 @@ export function UserFilterToolbar({
   };
 
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-5 gap-4 items-end-safe mb-4  sticky top-0 ">
+    <div className="flex flex-col gap-4">
       <div className="col-span-2">
         <InputText
-          placeholder="Name or email"
+          placeholder="Search Name or email"
           value={q}
           onChange={(e) => setQ(e.target.value)}
           icon={<Search />}
         />
       </div>
-      {/* Replaced with the LocationSelector component */}
-      {/* <div className="border"> */}
 
-      {/* <LocationSelector
-        value={locationId}
-        onChange={(value: string | number) => setLocationId(value)}
+      <div className="border border-black/5 bg-white/15 rounded-xl px-2 divide-y divide-black/5 gap-0 flex flex-col">
+        <InputSelect
+          value={role}
+          icon={<FilterIcon size={12} className="text-gray-600" />}
+          onChange={(e) => {
+            const value = typeof e === "string" ? e : e.target.value;
+            setRole(value);
+          }}
+          options={[
+            { value: "admin", label: "Admin" },
+            { value: "pic", label: "PIC" },
+            { value: "read_only", label: "Read only" },
+          ]}
+          label="Filter by role"
         />
-        </div> */}
 
-      <InputSelect
-        value={role}
-        onChange={(e) => {
-          const value = typeof e === 'string' ? e : e.target.value;
-          setRole(value);
-        }}
-        options={[
-          { value: "admin", label: "Admin" },
-          { value: "pic", label: "PIC" },
-          { value: "read_only", label: "Read only" },
-        ]}
-        label="Filter by"
-      />
+        <InputSelect
+          value={sort}
+          icon={<ArrowUpDown size={12} className="text-gray-600" />}
+          onChange={(e) => {
+            const value = typeof e === "string" ? e : e.target.value;
+            setSort(value);
+          }}
+          options={[
+            { value: "createdAt", label: "Created Date" },
+            { value: "name", label: "Name" },
+            { value: "email", label: "Email" },
+          ]}
+          label="Sort by"
+        />
 
-      <InputSelect
-        value={sort}
-        onChange={(e) => {
-          const value = typeof e === 'string' ? e : e.target.value;
-          setSort(value);
-        }}
-        options={[
-          { value: "createdAt", label: "Created Date" },
-          { value: "name", label: "Name" },
-          { value: "email", label: "Email" },
-        ]}
-        label="Sort by"
-      />
+        <InputSelect
+          icon={<Dot size={12} className="text-transparent" />}
+          value={order}
+          onChange={(e) => {
+            const value = typeof e === "string" ? e : e.target.value;
+            setOrder(value);
+          }}
+          options={[
+            { value: "asc", label: "Ascending" },
+            { value: "desc", label: "Descending" },
+          ]}
+          label="Order by"
+        />
+      </div>
 
-      <InputSelect
-        value={order}
-        onChange={(e) => {
-          const value = typeof e === 'string' ? e : e.target.value;
-          setOrder(value);
-        }}
-        options={[
-          { value: "asc", label: "Ascending" },
-          { value: "desc", label: "Descending" },
-        ]}
-        label="Order by"
-      />
       {/* Action Buttons */}
 
-      <button onClick={handleReset} className="btn w-full  btn-soft">
-        Reset
-      </button>
+      <GlassButton onClick={handleReset} size="sm">
+        <RefreshCwIcon size={14} />
+      </GlassButton>
     </div>
   );
 }
