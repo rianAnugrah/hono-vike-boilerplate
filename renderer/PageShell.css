@@ -3,6 +3,10 @@
   themes: light --default;
 }
 
+@theme {
+  --shadow-glass : 0 0 10px rgba(0, 0, 0, 0.3); 
+}
+
 /* App styles go here */
 
 a.is-active {
@@ -25,5 +29,7 @@ a.is-active {
 #react-root > * {
   transition: opacity 0.2s ease-in-out;
 }
+
+
 
 

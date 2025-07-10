@@ -7,6 +7,8 @@ import {
   Archive,
   BookCopy,
   HomeIcon,
+  LayoutDashboard,
+  LayoutDashboardIcon,
   MapPin,
   MenuIcon,
   ScanQrCode,
@@ -20,6 +22,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useUserStore } from "@/stores/store-user-login";
 // import Logo from "@/components/svg/logo";
 import UserDropDown from "../user-dropdown";
+import GlassButton from "../glass-button/glass-button";
 
 export default function Navbar() {
   return (
@@ -205,6 +208,7 @@ function MobileNavbar() {
 function DesktopNav() {
   const { role } = useUserStore();
   const [isCompact, setIsCompact] = useState(false);
+  const [dateTime, setDateTime] = useState<string>("");
 
   useEffect(() => {
     // Load preference from localStorage on mount
@@ -214,15 +218,48 @@ function DesktopNav() {
     }
   }, []);
 
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      setDateTime(
+        now.toLocaleString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      );
+    };
+    updateDateTime();
+    const interval = setInterval(updateDateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <nav
-      className={`hidden md:flex flex-col h-[100svh] gap-1 transition-all duration-300 
-        p-4 relative  `}
+      className={`hidden md:flex flex-col h-[100svh] gap-2 transition-all duration-300 
+        px-2 py-2 relative  `}
     >
-      <div className="flex flex-col h-full bg-white/10 border border-white/20 shadow-2xl p-4  backdrop-blur-lg rounded-lg">
-        <div className="h-[12.75rem] flex items-center justify-center">
-          <UserDropDown />
+      {/* <p
+        className="text-xs text-gray-100 text-left px-3 select-none"
+        aria-label="Current date and time"
+      >
+        {dateTime}
+      </p> */}
+      <div className="flex flex-col h-full gap-1 bg-white/10 border border-white/20 shadow-2xl py-4 px-2 w-[13rem]  backdrop-blur-xl rounded-2xl">
+        <div className="flex gap-2">
+
+
+        <GlassButton fluid={false} size="sm">
+          <LayoutDashboardIcon size={12}/>
+        </GlassButton>
         </div>
+        
+        {/* <div className="h-[12.75rem] flex items-center justify-center">
+          <UserDropDown />
+        </div> */}
 
         <DesktopLink
           href="/dashboard"
@@ -274,20 +311,7 @@ function DesktopNav() {
           </>
         )}
 
-        <div className="flex w-full items-center justify-center py-4">
-          <Link
-            href="/qr-scanner"
-            className={`bg-orange-600 group hover:bg-orange-200 hover:text-orange-600 py-2 ${
-              isCompact ? "px-2" : "px-4"
-            } transition-all duration-300 flex flex-row items-center ${
-              isCompact ? "justify-center" : "justify-start"
-            } gap-1 rounded shadow relative w-full text-white`}
-          >
-            <ScanQrCode className="w-[1.5rem] h-[1.5rem] group-hover:scale-[1.2] transition-all duration-300" />
-            {!isCompact && <span className="text-xs font-bold">Scan QR</span>}
-          </Link>
-        </div>
-
+       
         <div className="flex flex-grow flex-col"></div>
         <div className="flex w-full items-center justify-center py-2"></div>
       </div>

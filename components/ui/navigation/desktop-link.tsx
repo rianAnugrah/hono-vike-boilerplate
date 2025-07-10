@@ -22,27 +22,29 @@ export default function DesktopLink({
       <a
         href={href}
         className={`
-          text-xl flex  group items-center transition-all duration-300 py-2 px-0 rounded-lg w-full
-          ${isCompact ? 'flex-col justify-center items-center w-full' : 'flex-row justify-start gap-2'}
+          text-xl flex group items-center transition-all ease-in duration-300 py-3 px-4 rounded-full w-full
+          ${isCompact ? 'flex-col justify-center items-center w-full' : 'flex-row justify-start gap-3'}
           ${
             isActive
-              ? 'bg-gray-100 text-gray-900' + (!isCompact ? ' font-bold' : '')
-              : 'text-gray-400'
+              ? 'text-white backdrop-blur-lg bg-white/10' 
+              : 'bg-transparent text-gray-300'
           }
-          hover:bg-gray-100 hover:text-orange-600
+          hover:bg-white/10 hover:border-white/5 border border-transparent  hover:text-white  focus:outline-none focus:ring-1 focus:ring-orange-400
         `}
+        tabIndex={0}
+        aria-label={label}
       >
         {icon &&
           React.cloneElement(icon, {
             className: `
-              transition-all duration-300 w-[1.5rem] h-[1.5rem]
+              transition-all duration-300 w-[1rem] h-[1rem]
               ${icon.props.className || ""}
               ${isCompact ? 'group-hover:scale-[1.1]' : 'group-hover:scale-[1]'}
             `,
           })}
         {label && (
           <span className={`
-            ${isCompact ? 'text-xs text-center w-full mt-1' : 'text-sm'}
+            ${isCompact ? 'text-xs text-center w-full mt-1' : 'text-xs'}
           `}>
             {label}
           </span>
