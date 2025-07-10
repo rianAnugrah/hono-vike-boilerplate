@@ -242,7 +242,7 @@ export default function Page() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          Active Users ({users.length})
+          Active Users ({users?.length})
         </motion.button>
         <motion.button
           onClick={() => setCurrentView("deleted")}
@@ -343,7 +343,7 @@ export default function Page() {
         )}
 
         {/* Empty State */}
-        {!loading && ((currentView === "active" && users.length === 0) || (currentView === "deleted" && deletedUsers.length === 0)) && (
+        {!loading && ((currentView === "active" && users?.length === 0) || (currentView === "deleted" && deletedUsers.length === 0)) && (
           <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
             <div className="bg-gray-100 p-4 rounded-full mb-4">
               <svg
@@ -387,7 +387,7 @@ export default function Page() {
         )}
 
         {/* User List */}
-        {!loading && ((currentView === "active" && users.length > 0) || (currentView === "deleted" && deletedUsers.length > 0)) && (
+        {!loading && ((currentView === "active" && users?.length > 0) || (currentView === "deleted" && deletedUsers.length > 0)) && (
           <div className="divide-y divide-gray-100 overflow-y-auto max-h-[calc(100vh-320px)]">
             <AnimatePresence mode="popLayout">
               {(currentView === "active" ? users : deletedUsers).map((user, index) => (
