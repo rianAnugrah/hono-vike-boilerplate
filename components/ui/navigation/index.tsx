@@ -113,10 +113,8 @@ function MobileNavbar() {
                   transition={{ type: "tween", duration: 0.3 }}
                   style={{ maxHeight: "100vh" }}
                 >
-
-
                   <div className="py-2">
-                    <UserDropDown  />
+                    <UserDropDown />
                   </div>
 
                   <div className="flex flex-col p-2 gap-1 overflow-y-auto">
@@ -193,8 +191,6 @@ function MobileNavbar() {
                     </Link>
                   </div>
 
-
-
                   <div className="flex-grow"></div>
                 </motion.div>
               </div>
@@ -220,90 +216,81 @@ function DesktopNav() {
 
   return (
     <nav
-      className={`hidden md:flex flex-col h-[100svh] gap-1 ${
-        isCompact ? "w-[4.5rem]" : "w-[15rem]"
-      } transition-all duration-300 ${
-        isCompact ? "pl-3 pr-3" : "pl-12 pr-7"
-      } pb-4 relative`}
+      className={`hidden md:flex flex-col h-[100svh] gap-1 transition-all duration-300 
+        p-4 relative  `}
     >
-      <div className="h-[12.75rem] flex items-center justify-center">
-        <UserDropDown />
-      </div>
+      <div className="flex flex-col h-full bg-white/10 border border-white/20 shadow-2xl p-4  backdrop-blur-lg rounded-lg">
+        <div className="h-[12.75rem] flex items-center justify-center">
+          <UserDropDown />
+        </div>
 
-      {/* <button 
-        onClick={toggleSidebar}
-        className="absolute -right-[-1.5rem] top-[10.75rem] bg-blue-950 text-gray-500 hover:text-orange-600 p-1 rounded-full shadow-md z-10"
-        aria-label={isCompact ? "Expand sidebar" : "Collapse sidebar"}
-      >
-        {isCompact ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-      </button> */}
-
-      <DesktopLink
-        href="/dashboard"
-        icon={<HomeIcon />}
-        label="Home"
-        isCompact={isCompact}
-      />
-      <DesktopLink
-        href="/asset"
-        icon={<Archive />}
-        label="Asset"
-        isCompact={isCompact}
-      />
-      {role === "pic" && (
         <DesktopLink
-          href="/inspection"
-          icon={<SearchCheck />}
-          label="Inspect"
+          href="/dashboard"
+          icon={<HomeIcon />}
+          label="Home"
           isCompact={isCompact}
         />
-      )}
-
-      {role === "admin" && (
-        <>
+        <DesktopLink
+          href="/asset"
+          icon={<Archive />}
+          label="Asset"
+          isCompact={isCompact}
+        />
+        {role === "pic" && (
           <DesktopLink
             href="/inspection"
             icon={<SearchCheck />}
             label="Inspect"
             isCompact={isCompact}
           />
-          <DesktopLink
-            href="/category"
-            icon={<BookCopy />}
-            label="Code"
-            isCompact={isCompact}
-          />
-          <DesktopLink
-            href="/location"
-            icon={<MapPin />}
-            label="Zone"
-            isCompact={isCompact}
-          />
-          <DesktopLink
-            href="/user"
-            icon={<User2 />}
-            label="User"
-            isCompact={isCompact}
-          />
-        </>
-      )}
+        )}
 
-      <div className="flex w-full items-center justify-center py-4">
-        <Link
-          href="/qr-scanner"
-          className={`bg-orange-600 group hover:bg-orange-200 hover:text-orange-600 py-2 ${
-            isCompact ? "px-2" : "px-4"
-          } transition-all duration-300 flex flex-row items-center ${
-            isCompact ? "justify-center" : "justify-start"
-          } gap-1 rounded shadow relative w-full text-white`}
-        >
-          <ScanQrCode className="w-[1.5rem] h-[1.5rem] group-hover:scale-[1.2] transition-all duration-300" />
-          {!isCompact && <span className="text-xs font-bold">Scan QR</span>}
-        </Link>
+        {role === "admin" && (
+          <>
+            <DesktopLink
+              href="/inspection"
+              icon={<SearchCheck />}
+              label="Inspect"
+              isCompact={isCompact}
+            />
+            <DesktopLink
+              href="/category"
+              icon={<BookCopy />}
+              label="Code"
+              isCompact={isCompact}
+            />
+            <DesktopLink
+              href="/location"
+              icon={<MapPin />}
+              label="Zone"
+              isCompact={isCompact}
+            />
+            <DesktopLink
+              href="/user"
+              icon={<User2 />}
+              label="User"
+              isCompact={isCompact}
+            />
+          </>
+        )}
+
+        <div className="flex w-full items-center justify-center py-4">
+          <Link
+            href="/qr-scanner"
+            className={`bg-orange-600 group hover:bg-orange-200 hover:text-orange-600 py-2 ${
+              isCompact ? "px-2" : "px-4"
+            } transition-all duration-300 flex flex-row items-center ${
+              isCompact ? "justify-center" : "justify-start"
+            } gap-1 rounded shadow relative w-full text-white`}
+          >
+            <ScanQrCode className="w-[1.5rem] h-[1.5rem] group-hover:scale-[1.2] transition-all duration-300" />
+            {!isCompact && <span className="text-xs font-bold">Scan QR</span>}
+          </Link>
+        </div>
+
+        <div className="flex flex-grow flex-col"></div>
+        <div className="flex w-full items-center justify-center py-2"></div>
       </div>
-
-      <div className="flex flex-grow flex-col"></div>
-      <div className="flex w-full items-center justify-center py-2"></div>
     </nav>
   );
 }
