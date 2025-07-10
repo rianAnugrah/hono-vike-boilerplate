@@ -22,14 +22,14 @@ export default function DesktopLink({
       <a
         href={href}
         className={`
-          text-xl flex group items-center transition-all ease-in duration-300 py-3 px-4 rounded-full w-full
+          text-xl flex group items-center transition-all ease-in border px-2 border-transparent duration-200 py-2  rounded-full w-full
           ${isCompact ? 'flex-col justify-center items-center w-full' : 'flex-row justify-start gap-3'}
           ${
             isActive
-              ? 'text-white  bg-white/5 shadow-glass' 
-              : 'bg-transparent text-gray-300'
+              ? 'px-4 text-white  bg-blue-500 shadow-glass' 
+              : 'hover:px-3 bg-transparent text-gray-600 hover:bg-white/10 hover:border-white/5    hover:text-gray-900  focus:outline-none focus:ring-1 focus:ring-orange-400'
           }
-          hover:bg-white/10 hover:border-white/5 border border-transparent  hover:text-white  focus:outline-none focus:ring-1 focus:ring-orange-400
+          
         `}
         tabIndex={0}
         aria-label={label}

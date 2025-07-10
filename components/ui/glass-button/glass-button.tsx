@@ -39,7 +39,7 @@ const borderColors: Record<string, string> = {
 };
 
 const textColors: Record<string, string> = {
-  blue: 'text-white',
+  blue: 'text-gray-600',
   green: 'text-white',
   red: 'text-white',
   purple: 'text-white',
@@ -63,7 +63,7 @@ const GlassButton: FC<GlassButtonProps> = ({
   // Variant classes
   let variantClasses = '';
   if (variant === 'solid') {
-    variantClasses = `bg-white/5`;
+    variantClasses = `bg-white/10 backdrop-blur-sm`;
   } else if (variant === 'outline') {
     variantClasses = `bg-transparent border-2 ${borderColors[color]} backdrop-blur-md`;
   } else if (variant === 'ghost') {

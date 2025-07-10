@@ -7,6 +7,7 @@ import {
   Archive,
   BookCopy,
   ChevronLeftIcon,
+  Clock10Icon,
   HomeIcon,
   LayoutDashboard,
   LayoutDashboardIcon,
@@ -245,38 +246,24 @@ function DesktopNav() {
       className={`hidden md:flex flex-col h-[100svh] gap-2 transition-all duration-300 
         px-2 py-2 relative  `}
     >
-      {/* <p
-        className="text-xs text-gray-100 text-left px-3 select-none"
-        aria-label="Current date and time"
-      >
-        {dateTime}
-      </p> */}
-      <div className="flex flex-col h-full gap-1 bg-black/10   border border-black/5 shadow-inner  p-2 w-[13rem]  backdrop-blur-xl rounded-2xl">
+
+      <div className="flex flex-col h-full gap-1 bg-white/50   border border-white/20 shadow-glass  p-3 w-[13rem]  backdrop-blur-sm rounded-2xl">
         <div className="flex gap-2">
-          <Tooltip
-          placement="left"
-          content={`Back to HCML Portal`
-
-          }
-          >
-
-        <GlassButton fluid={false} size="sm" >
-          <LayoutDashboardIcon size={14} />
-        </GlassButton>
+          <Tooltip placement="left" content={`Back to HCML Portal`}>
+            <GlassButton fluid={false} size="sm">
+              <LayoutDashboardIcon size={14} />
+            </GlassButton>
           </Tooltip>
 
-        <div className="block flex-grow"> 
+          <div className="block flex-grow"></div>
+          <GlassButton fluid={false} variant="ghost" size="sm">
+            <SidebarCloseIcon size={14} />
+          </GlassButton>
+        </div>
 
-        </div>
-        <GlassButton fluid={false} variant="ghost" size="sm">
-          <SidebarCloseIcon size={14}/>
-        </GlassButton>
-       
-        </div>
-        
-        {/* <div className="h-[12.75rem] flex items-center justify-center">
+        <div className=" flex items-center justify-center">
           <UserDropDown />
-        </div> */}
+        </div>
 
         <DesktopLink
           href="/dashboard"
@@ -328,9 +315,16 @@ function DesktopNav() {
           </>
         )}
 
-       
         <div className="flex flex-grow flex-col"></div>
-        <div className="flex w-full items-center justify-center py-2"></div>
+        <div className="flex w-full items-center justify-center py-2">
+          <Clock10Icon size={12}/>
+                <p
+        className="text-xs text-gray-600 text-left px-1 select-none"
+        aria-label="Current date and time"
+      >
+        {dateTime}
+      </p>
+        </div>
       </div>
     </nav>
   );
