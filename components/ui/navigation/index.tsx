@@ -247,7 +247,7 @@ function DesktopNav() {
         px-2 py-2 relative  `}
     >
 
-      <div className="flex flex-col h-full gap-1 bg-white/50   border border-white/20 shadow-glass  p-3 w-[13rem]  backdrop-blur-sm rounded-2xl">
+      <div className="flex flex-col h-full gap-1 bg-white/50   border border-white/20 shadow-glass  p-3 w-[16rem]  backdrop-blur-sm rounded-2xl">
         <div className="flex gap-2">
           <Tooltip placement="left" content={`Back to HCML Portal`}>
             <GlassButton fluid={false} size="sm">

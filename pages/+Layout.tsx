@@ -55,7 +55,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   // For protected pages, render with navigation
   return (
-    <div className="w-full h-[100svh] relative flex bg-gray-100 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/img/bg.png')" }}>
+    <div className="w-full h-[100svh] relative flex bg-gray-100 bg-cover bg-center bg-no-repeat " style={{ backgroundImage: "url('/img/bg-5.png')" }}>
       <Navbar />
       <div className="w-full md:w-full flex flex-col h-[100vh]">
         <div
