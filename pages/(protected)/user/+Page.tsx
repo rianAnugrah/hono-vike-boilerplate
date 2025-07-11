@@ -6,7 +6,7 @@ import { UserPlus, Filter, RefreshCw } from "lucide-react";
 import UserFormModal from "./_shared/user-form-modal";
 import Badge from "@/components/ui/badge";
 import GlassButton from "@/components/ui/glass-button/glass-button";
-
+import { Tab } from "@/components/ui/tab";
 // Extended User type with all needed properties
 type User = {
   id: string;
@@ -180,6 +180,8 @@ export default function Page() {
     setIsModalOpen(false);
   };
 
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
     <div className="p-0 min-h-screen flex w-full">
       <div className="w-[calc(100%_-_20rem)] p-4">
@@ -228,71 +230,15 @@ export default function Page() {
           </div>
         </motion.div>
 
-        {/* View Toggle */}
-        <motion.div
-          className="mb-6 flex gap-2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
+        <Tab
+          tabs={[`Active users (${users?.length})`, `Deleted Users (${deletedUsers.length})`]}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
         >
-          <motion.button
-            onClick={() => setCurrentView("active")}
-            className={`px-4 py-2  transition-colors ${
-              currentView === "active"
-                ? "border-b-2 border-blue-600 text-blue-600 font-bold"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Active Users ({users?.length})
-          </motion.button>
-          <motion.button
-            onClick={() => setCurrentView("deleted")}
-            className={`px-4 py-2  transition-colors ${
-              currentView === "deleted"
-                ? "border-b-2 border-blue-600 text-blue-600 font-bold"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-            }`}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Deleted Users ({deletedUsers.length})
-          </motion.button>
-        </motion.div>
+        
+        </Tab>
 
-        {/* Filters Section - Only show for active users */}
-        {currentView === "active" && (
-          <motion.div
-            className="mb-5 bg-white p-4 rounded-xl shadow-sm border border-gray-200"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          ></motion.div>
-        )}
 
-        {/* Refresh Button for Deleted Users */}
-        {currentView === "deleted" && (
-          <motion.div
-            className="mb-5 flex justify-end"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            <motion.button
-              onClick={handleRefresh}
-              className="flex items-center gap-2 px-4 py-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              disabled={refreshing}
-            >
-              <RefreshCw
-                className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`}
-              />
-              <span>Refresh</span>
-            </motion.button>
-          </motion.div>
-        )}
 
         {/* User List */}
         <motion.div
