@@ -5,18 +5,20 @@ interface GlassButtonProps {
   onClick: () => void;
   ariaLabel?: string;
   variant?: 'solid' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   fluid?: boolean;
   color?: 'blue' | 'green' | 'red' | 'purple' | 'gray';
 }
 
 const sizeClasses: Record<string, string> = {
+  xs: 'px-2 py-1 text-xs',
   sm: 'px-3 py-1.5 text-sm',
   md: 'px-6 py-3 text-base',
   lg: 'px-8 py-4 text-lg',
 };
 
 const squareSizeClasses: Record<string, string> = {
+  xs: 'w-5 h-5', // 20px
   sm: 'w-7 h-7', // 36px
   md: 'w-12 h-12', // 48px
   lg: 'w-16 h-16', // 64px
@@ -117,7 +119,7 @@ const GlassButton: FC<GlassButtonProps> = ({
         </span>
       )}
       {/* Button content */}
-      <span className="relative z-10 font-semibold drop-shadow-md flex items-center justify-center w-full h-full">
+      <span className="relative z-10  drop-shadow-md flex items-center justify-center w-full h-full">
         {children}
       </span>
       <style>{`

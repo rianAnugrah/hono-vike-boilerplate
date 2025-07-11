@@ -53,7 +53,8 @@ export function UserFilterToolbar({ defaultValues = {}, onChange }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
+      
       <div className="col-span-2">
         <InputText
           placeholder="Search Name or email"
@@ -61,6 +62,13 @@ export function UserFilterToolbar({ defaultValues = {}, onChange }: Props) {
           onChange={(e) => setQ(e.target.value)}
           icon={<Search />}
         />
+      </div>
+
+      <div className="flex text-xs w-full text-gray-500 items-center gap-1 px-2">
+        <p className="flex-grow text-left">Filter options</p>
+        <GlassButton onClick={handleReset} size="xs">
+          Reset Filter
+        </GlassButton>
       </div>
 
       <div className="border border-black/5 bg-white/15 rounded-xl px-2 divide-y divide-black/5 gap-0 flex flex-col">
@@ -76,7 +84,7 @@ export function UserFilterToolbar({ defaultValues = {}, onChange }: Props) {
             { value: "pic", label: "PIC" },
             { value: "read_only", label: "Read only" },
           ]}
-          label="Filter by role"
+          label="By role"
         />
 
         <InputSelect
@@ -109,11 +117,7 @@ export function UserFilterToolbar({ defaultValues = {}, onChange }: Props) {
         />
       </div>
 
-      {/* Action Buttons */}
-
-      <GlassButton onClick={handleReset} size="sm">
-        <RefreshCwIcon size={14} />
-      </GlassButton>
+    
     </div>
   );
 }

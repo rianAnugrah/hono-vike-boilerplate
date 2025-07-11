@@ -64,6 +64,7 @@ export default function InputText({
             rounded-lg
             transition-colors duration-200
             focus:outline-none
+            ${(!value && !isFocused) ? "text-gray-400" : ""}
             ${disabled ? "bg-gray-100 text-gray-400 cursor-not-allowed" : ""}
           `}
           value={value}

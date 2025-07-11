@@ -202,30 +202,29 @@ export default function Page() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">
+          <div className="flex justify-between items-center">
+            <div className="w-[calc(100%_-_8rem)]">
+              <h1 className="text-sm font-bold text-gray-900">
                 User Management
               </h1>
-              <p className="text-gray-500 mt-1">
+              <p className="text-gray-600 text-xs mt-1">
                 Manage system users and their access permissions
               </p>
             </div>
-
-            {currentView === "active" && (
-              <motion.button
-                onClick={() => {
-                  setForm({ email: "", password: "" });
-                  setIsModalOpen(true);
-                }}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition-colors w-full md:w-auto"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <UserPlus className="w-4 h-4" />
-                <span>Add New User</span>
-              </motion.button>
-            )}
+            <div className="w-[8rem] flex items-center justify-end">
+              {currentView === "active" && (
+                <GlassButton
+                  onClick={() => {
+                    setForm({ email: "", password: "" });
+                    setIsModalOpen(true);
+                  }}
+                  size="sm"
+                >
+                  <UserPlus className="w-4 h-4 mr-1" />
+                  <span>New User</span>
+                </GlassButton>
+              )}
+            </div>
           </div>
         </motion.div>
 
@@ -559,19 +558,15 @@ export default function Page() {
 
       <div className="flex bg-white/50 flex-col  border border-white/20 shadow-glass backdrop-blur-sm w-[20rem] p-2">
         <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center text-gray-700 font-medium gap-2">
-            <Filter className="w-4 h-4" />
-            <span>Filter Options</span>
+          <div className="flex text-xs items-center text-gray-500 font-medium gap-2 pl-2">
+            <span>Search and Filter</span>
           </div>
 
-          <GlassButton
-            onClick={handleRefresh}
-            size="sm"
-            disabled={refreshing}
-          >
+          <GlassButton onClick={handleRefresh} size="xs" disabled={refreshing}>
             <RefreshCw
               className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`}
             />
+            <p className="pl-1">Refresh Data</p>
           </GlassButton>
         </div>
 

@@ -86,13 +86,38 @@ export default function InputSelect({
   useEffect(() => {
     if (isOpen && containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
+      
+      // Calculate the maximum width needed for the content
+      const maxOptionWidth = Math.max(
+        ...options.map(option => {
+          // Create a temporary element to measure text width
+          const temp = document.createElement('span');
+          temp.style.visibility = 'hidden';
+          temp.style.position = 'absolute';
+          temp.style.whiteSpace = 'nowrap';
+          temp.style.fontSize = '12px'; // text-xs
+          temp.style.fontFamily = 'inherit';
+          temp.textContent = option.label;
+          document.body.appendChild(temp);
+          const width = temp.offsetWidth;
+          document.body.removeChild(temp);
+          return width;
+        })
+      );
+      
+      // Add padding for the dropdown (16px on each side)
+      const contentWidth = maxOptionWidth + 32;
+      const minWidth = 120; // Minimum width
+      const maxWidth = 300; // Maximum width
+      const dropdownWidth = Math.max(minWidth, Math.min(contentWidth, maxWidth));
+      
       setDropdownPosition({
         top: rect.bottom + window.scrollY + 4, // Add 4px spacing (mt-1 equivalent)
-        left: rect.left + window.scrollX,
-        width: rect.width,
+        left: rect.right + window.scrollX - dropdownWidth, // Right-align by positioning from right edge
+        width: dropdownWidth,
       });
     }
-  }, [isOpen]);
+  }, [isOpen, options]);
 
   const handleSelect = (option: Option) => {
     setSelectedOption(option);
@@ -213,7 +238,7 @@ export default function InputSelect({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -5, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="fixed z-[9999] bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden"
+                className="fixed z-[9999] text-xs bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden"
                 style={{
                   top: dropdownPosition.top,
                   left: dropdownPosition.left,
@@ -221,7 +246,7 @@ export default function InputSelect({
                   maxHeight: "250px",
                 }}
               >
-                <div className="max-h-60 overflow-y-auto relative">
+                <div className="max-h-60 overflow-y-auto relative p-1">
                   {searchInput && (
                     <div className="sticky top-0 w-full bg-white p-2 border-b border-gray-100">
                       {searchInput}
@@ -234,10 +259,10 @@ export default function InputSelect({
                         key={option.value}
                         whileHover={{ backgroundColor: "#f3f4f6" }}
                         className={`
-                        px-4 py-2.5 cursor-pointer transition-colors duration-150
+                        px-2 py-1 cursor-pointer rounded text-right transition-colors duration-150
                         ${
                           selectedOption?.value === option.value
-                            ? "bg-blue-50 text-blue-700"
+                            ? "bg-blue-500 text-white"
                             : "text-gray-800"
                         }
                       `}

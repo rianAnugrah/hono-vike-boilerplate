@@ -6,6 +6,7 @@ import Checkbox from './checkbox';
 import Switch from './switch';
 import InputText from './input-text';
 import InputSelect from './input-select';
+import GlassButton from './glass-button/glass-button';
 
 export default function DesignSystemDemo() {
   const [inputValue, setInputValue] = useState('');
@@ -133,6 +134,7 @@ export default function DesignSystemDemo() {
           <div>
             <h3 className="text-sm font-medium text-gray-700 mb-3">Sizes</h3>
             <div className="flex flex-wrap items-center gap-4">
+              <Button size="xs">Extra Small</Button>
               <Button size="sm">Small</Button>
               <Button size="md">Medium</Button>
               <Button size="lg">Large</Button>
@@ -145,6 +147,43 @@ export default function DesignSystemDemo() {
               <Button icon={<ArrowRight size={16} />} iconPosition="right">Next</Button>
               <Button variant="success" icon={<Check size={16} />} iconPosition="left">Confirm</Button>
               <Button variant="danger" icon={<X size={16} />} iconPosition="left">Cancel</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Glass Buttons */}
+      <section className="mb-12">
+        <h2 className="text-xl font-medium text-gray-900 mb-4">Glass Buttons</h2>
+        
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">Variants</h3>
+            <div className="flex flex-wrap gap-4">
+              <GlassButton onClick={() => {}}>Solid</GlassButton>
+              <GlassButton onClick={() => {}} variant="outline">Outline</GlassButton>
+              <GlassButton onClick={() => {}} variant="ghost">Ghost</GlassButton>
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">Sizes</h3>
+            <div className="flex flex-wrap items-center gap-4">
+              <GlassButton onClick={() => {}} size="xs">Extra Small</GlassButton>
+              <GlassButton onClick={() => {}} size="sm">Small</GlassButton>
+              <GlassButton onClick={() => {}} size="md">Medium</GlassButton>
+              <GlassButton onClick={() => {}} size="lg">Large</GlassButton>
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">Colors</h3>
+            <div className="flex flex-wrap gap-4">
+              <GlassButton onClick={() => {}} color="blue">Blue</GlassButton>
+              <GlassButton onClick={() => {}} color="green">Green</GlassButton>
+              <GlassButton onClick={() => {}} color="red">Red</GlassButton>
+              <GlassButton onClick={() => {}} color="purple">Purple</GlassButton>
+              <GlassButton onClick={() => {}} color="gray">Gray</GlassButton>
             </div>
           </div>
         </div>
@@ -266,6 +305,15 @@ export default function DesignSystemDemo() {
               <Badge text="Filled" color="blue" variant="filled" />
               <Badge text="Light" color="blue" variant="light" />
               <Badge text="Outline" color="blue" variant="outline" />
+            </div>
+          </div>
+          
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">Sizes</h3>
+            <div className="flex flex-wrap gap-2">
+              <Badge text="Extra Small" color="blue" size="xs" />
+              <Badge text="Small" color="blue" size="sm" />
+              <Badge text="Medium" color="blue" size="md" />
             </div>
           </div>
           

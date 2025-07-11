@@ -3,7 +3,7 @@
 import React from 'react'
 
 type BadgeVariant = 'filled' | 'light' | 'outline';
-type BadgeSize = 'sm' | 'md';
+type BadgeSize = 'xs' | 'sm' | 'md';
 
 type BadgeProps = {
   text: string;
@@ -59,6 +59,7 @@ export default function Badge({
   };
 
   const sizeClasses: Record<BadgeSize, string> = {
+    xs: 'text-xs px-1.5 py-0.5',
     sm: 'text-xs px-2 py-0.5',
     md: 'text-xs px-2.5 py-1'
   };
