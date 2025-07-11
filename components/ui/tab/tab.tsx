@@ -31,18 +31,18 @@ const Tab: React.FC<TabProps> = ({
   return (
     <>
       {/* Tabs */}
-      <div className="relative mb-4 z-10 flex bg-white/0 backdrop-blur-sm rounded-[18px] shadow-glass p-1">
+      <div className=" mb-2 w-full z-10 bg-white/0 backdrop-blur-sm rounded-[14px] shadow-glass p-1">
         {tabs.map((tab, idx) => (
           <button
             key={tab}
-            className={`px-4 py-2 text-sm  focus:outline-none focus:ring-0 focus:ring-orange-200 transition-all duration-200
+            className={`px-4 py-2 text-xs cursor-pointer focus:outline-none focus:ring-0 focus:ring-orange-200 transition-all duration-200
               ${
                 idx === activeTab
-                  ? "bg-white/30 text-white rounded-2xl shadow-lg border-0 border-orange-200 scale-105"
+                  ? "bg-white/30 text-white rounded-[12px] shadow-lg border-0 border-orange-200 scale-105"
                   : "bg-white/0 text-white/80 "
               }
-              ${idx === 0 ? "rounded-l-[16px]" : ""}
-              ${idx === tabs.length - 1 ? "rounded-r-[16px]" : ""}
+              ${idx === 0 ? "rounded-l-[12px]" : ""}
+              ${idx === tabs.length - 1 ? "rounded-r-[12px]" : ""}
             `}
             aria-selected={idx === activeTab}
             aria-controls={`tabpanel-${idx}`}
@@ -57,7 +57,7 @@ const Tab: React.FC<TabProps> = ({
         ))}
       </div>
       <div
-        className={`w-full flex justify-center items-center bg-white/0 backdrop-blur-2xl rounded-[18px] shadow-glass relative ${
+        className={`w-full flex flex-col p-1 bg-white/0 backdrop-blur-2xl rounded-[18px] shadow-glass relative ${
           className || ""
         }`}
         style={{ minHeight: 400 }}
